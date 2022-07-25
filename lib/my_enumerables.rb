@@ -1,4 +1,9 @@
 module Enumerable
+  def my_each_with_index
+    self.my_each do |element|
+      yield element, index(element) if block_given?
+    end
+  end
   # Your code goes here
 end
 
@@ -7,5 +12,10 @@ end
 # your enumerable module will have access
 # to this method
 class Array
-  # Define my_each here
+include Enumerable
+  def my_each
+    for element in self
+      yield(element) if block_given?
+    end
+  end
 end
