@@ -5,7 +5,7 @@ module Enumerable
       yield self[i], i if block_given?
       i += 1
     end
-    return self
+    self
   end
 
   def my_select
@@ -15,7 +15,7 @@ module Enumerable
         new_array << value
       end
     end
-    return new_array
+    new_array
   end
 
   def my_all?
@@ -25,7 +25,7 @@ module Enumerable
         result = false
       end
     end
-    return result
+    result
   end
 
   def my_any?
@@ -35,7 +35,7 @@ module Enumerable
         result = true
       end
     end
-    return result
+    result
   end
 
   def my_none?
@@ -45,7 +45,7 @@ module Enumerable
         result = false
       end
     end
-    return result
+    result
   end
 
   def my_count
@@ -69,12 +69,15 @@ module Enumerable
     end
     arr
   end
+
+  def my_inject(acc)
+    self.my_each do |value|
+      acc = yield(acc, value)
+    end
+    acc
+  end
 end
 
-# You will first have to define my_each
-# on the Array class. Methods defined in
-# your enumerable module will have access
-# to this method
 class Array
 include Enumerable
   def my_each
