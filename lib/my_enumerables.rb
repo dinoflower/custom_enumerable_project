@@ -61,6 +61,14 @@ module Enumerable
       self.size
     end
   end
+
+  def my_map
+    arr = []
+    self.my_each do |value|
+      arr << yield(value)
+    end
+    arr
+  end
 end
 
 # You will first have to define my_each
