@@ -47,6 +47,20 @@ module Enumerable
     end
     return result
   end
+
+  def my_count
+    arr = []
+    if block_given?
+      self.my_each do |value|
+        if yield(value) == true
+          arr << value
+        end
+      end
+      arr.size
+    else
+      self.size
+    end
+  end
 end
 
 # You will first have to define my_each
