@@ -78,8 +78,9 @@ module Enumerable
   end
 end
 
+# to include custom enumerables
 class Array
-include Enumerable
+  include Enumerable
   def my_each
     for element in self
       yield(element) if block_given?
